@@ -60,7 +60,7 @@
                                     <div class="input-form">
                                         <input type="text" placeholder="File Name" />
                                     </div>
-                                    <div class="select-form">
+                                    <!-- <div class="select-form">
                                         <div class="select-itms">
                                             <select name="select" id="select1">
                                                 <option value="">Category Name</option>
@@ -69,7 +69,7 @@
                                                 <option value="">Category Name</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="search-form">
                                         <a href="#">Find</a>
                                     </div>
