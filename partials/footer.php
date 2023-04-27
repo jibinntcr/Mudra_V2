@@ -59,10 +59,16 @@
                             <!-- Form -->
                             <div class="footer-form">
                                 <div id="mc_embed_signup">
-                                    <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe_form relative mail_part">
-                                        <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address" class="placeholder hide-on-focus" onfocus="this.placeholder = ''" onblur="this.placeholder = ' Email Address '" />
+                                    <form target="_blank"
+                                        action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                        method="get" class="subscribe_form relative mail_part">
+                                        <input type="email" name="email" id="newsletter-form-email"
+                                            placeholder="Email Address" class="placeholder hide-on-focus"
+                                            onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = ' Email Address '" />
                                         <div class="form-icon">
-                                            <button type="submit" name="submit" id="newsletter-submit" class="email_icon newsletter-submit button-contactForm">
+                                            <button type="submit" name="submit" id="newsletter-submit"
+                                                class="email_icon newsletter-submit button-contactForm">
                                                 <img src="assets/img/icon/form.png" alt="" />
                                             </button>
                                         </div>
@@ -85,20 +91,20 @@
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                     <div class="footer-tittle-bottom">
                         <span>5000+</span>
-                        <p>Talented Hunter</p>
+                        <p>Files</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                     <div class="footer-tittle-bottom">
-                        <span>451</span>
-                        <p>Talented Hunter</p>
+                        <span>451+</span>
+                        <p>Categories</p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
                     <!-- Footer Bottom Tittle -->
                     <div class="footer-tittle-bottom">
-                        <span>568</span>
-                        <p>Talented Hunter</p>
+                        <span>568+</span>
+                        <p>Daily Users</p>
                     </div>
                 </div>
             </div>
@@ -112,15 +118,14 @@
                     <div class="col-xl-10 col-lg-10">
                         <div class="footer-copy-right">
                             <p>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
                                 Copyright &copy;
                                 <script>
-                                    document.write(new Date().getFullYear());
+                                document.write(new Date().getFullYear());
                                 </script>
-                                All rights reserved | This template is made with
-                                <i class="fa fa-heart" aria-hidden="true"></i> by
-                                <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                All rights reserved | Designed By
+                                <a href="https://infinio.co.in" target="_blank">Infinio</a>
+
                             </p>
                         </div>
                     </div>
