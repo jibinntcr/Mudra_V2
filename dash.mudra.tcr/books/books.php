@@ -26,7 +26,7 @@ if (strlen($_SESSION['alogin']) == 0) {
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Category | Mudra Publications</title>
+    <title>Books | Mudra Publications</title>
 
     <meta name="description" content="" />
 
@@ -107,9 +107,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 
           <!-- Content wrapper -->
           <div class="container-xxl flex-grow-1 container-p-y">
-          <a href="new-category.php"  class="float-end btn btn-primary">New</a>
+          <a href="new-book.php"  class="float-end btn btn-primary">New</a>
               <h4 class="fw-bold py-3 mb-4">
-                <span class="text-muted fw-light">Admin / </span>Category</h4>
+                <span class="text-muted fw-light">Admin / </span>Books</h4>
               
               <!-- Basic Layout -->
               <div class="card">
@@ -118,7 +118,8 @@ if (strlen($_SESSION['alogin']) == 0) {
                   <table class="table">
                     <thead>
                       <tr>
-                        <th>Category Name</th>
+                        <th>Book Name</th>
+                        <th>Book Category</th>
                         <th>Status</th>
                         <th>Actions</th>
                       </tr>
@@ -127,7 +128,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                     <?php
                     $cnt = 1;
-                    $sql = "SELECT * from category ";
+                    $sql = "SELECT * from books ";
                     $query = $dbh->prepare($sql);
                     $query->execute();
                     $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -139,8 +140,11 @@ if (strlen($_SESSION['alogin']) == 0) {
                       <tr>
                       <?php
                         $heading =  substr($result->name, 0, 65);
+                        $category =  substr($result->category, 0, 65);
                       ?>
+                      
                         <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong> <?php echo  $heading ?></strong></td>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong> <?php echo  $category ?></strong></td>
                        
                        
                             <?php
@@ -149,7 +153,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                               $idE = $result->id;  ?>
                         <td>
                             <div class="form-check form-switch ">
-                            <input onclick="location.href ='category-status-activate.php?idE=<?php echo $idE ?>';"
+                            <input onclick="location.href ='book-activate.php?idE=<?php echo $idE ?>';"
                              class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
                             </div>
                          </td>
@@ -157,14 +161,14 @@ if (strlen($_SESSION['alogin']) == 0) {
                               $idD = $result->id; ?>
                         <td>
                             <div class="form-check form-switch ">
-                            <input onclick="location.href ='category-status-activate.php?idD=<?php echo $idD ?>';"
+                            <input onclick="location.href ='book-activate.php?idD=<?php echo $idD ?>';"
                             class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
                              </div>
                         </td>
                             <?php }
                             ?>
                             <td>
-                         <a  onclick="location.href = 'edit-category.php?id=<?php echo   $result->id ?>';" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                         <a  onclick="location.href = 'edit-book.php?id=<?php echo   $result->id ?>';" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                         </td>
                       </tr>
                         <?php }

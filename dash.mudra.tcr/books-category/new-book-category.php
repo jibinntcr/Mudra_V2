@@ -1,39 +1,34 @@
 <?php
 session_start();
-
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+error_reporting(0);
 include('../../includes/config.php');
 if (strlen($_SESSION['alogin']) == 0) {
-  echo '<script>window.location = "../login.php";</script>';
+    echo '<script>window.location = "../login.php";</script>';
 } else {
-  if (isset($_POST['fileBTN'])) {
+    if (isset($_POST['catBTN'])) {
+        $category = $_POST['catname'];
+        $slug = strtolower(preg_replace('/[^a-zA-Z0-9\-]/', '', preg_replace('/\s+/', '-', $category)));
 
-    $id = $_POST['id'];
-    // $image = $_POST['OldImage'];
 
-    $category = $_POST['name'];
-    $slug = strtolower(preg_replace('/[^a-zA-Z0-9\-]/', '', preg_replace('/\s+/', '-', $category)));
+        // $folder = '../uploads/';
+        // $file = $folder . basename($_FILES["image"]["name"]);
+        // move_uploaded_file($_FILES['image']['tmp_name'], $file);
+        // $image = basename($_FILES["image"]["name"]);
 
-    $sql = "UPDATE category SET name='$category',slug='$slug' where id='$id'";
-    // print_r($sql);
-    // exit();
-
-    $query = $dbh->prepare($sql);
-    $result = $query->execute();
-    if ($query->rowCount() > 0) {
-      echo '<script>alert("Success")</script>';
-      echo '<script>window.location = "category.php";</script>';
-    } else {
-      echo '<script>alert("something went wrong please try again")</script>';
-      echo '<script>window.location = "category.php";</script>';
-    }
-  }
-
-?>
+        $status = '1';
+        $sql = "INSERT INTO bookcategory(name,slug,status) VALUES ('" . $category . "','" . $slug . "','" . $status . "')";
+        // print_r($sql);
+        // exit();
+        $query = $dbh->prepare($sql);
+        $result = $query->execute();
+        if ($query->rowCount() > 0) {
+            echo '<script>alert("Success")</script>';
+            echo '<script>window.location = "books-category.php";</script>';
+        } else {
+            echo '<script>alert("something went wrong please try again")</script>';
+            echo '<script>window.location = "books-category.php";</script>';
+        }
+    } ?>
 
 
 
@@ -55,7 +50,7 @@ if (strlen($_SESSION['alogin']) == 0) {
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Edit Category | Mudra Publications</title>
+    <title>Create New Book Category | Mudra Publications</title>
 
     <meta name="description" content="" />
 
@@ -90,7 +85,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../ssets/js/config.js"></script>
+    <script src="../assets/js/config.js"></script>
     <script src="../ckeditor_4.19.1_standard/ckeditor/ckeditor.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   </head>
@@ -109,46 +104,34 @@ if (strlen($_SESSION['alogin']) == 0) {
           <!-- Navbar -->
 
           <?php include('../admin-partials/header.php') ?>
-
-          <!-- / Navbar -->
+                    <!-- / Navbar -->
 
           <!-- Content wrapper -->
           <div class="container-xxl flex-grow-1 container-p-y">
                       <h4 class="fw-bold py-3 mb-4">
-                <span class="text-muted fw-light">Admin / </span> Edit Category</h4>
+                <span class="text-muted fw-light">Admin / </span>Create New Book Category</h4>
               
               <!-- Basic Layout -->
               <div class="row">
                 <div class="col-xxl">
                   <div class="card mb-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                      <!-- <h5 class="mb-0">Edit Category</h5> -->
+                      <!-- <h5 class="mb-0">Create New</h5> -->
                       <!-- <small class="text-muted float-end">Default label</small> -->
                     </div>
                     <div class="card-body">
                     <form class="forms-sample" enctype="multipart/form-data" method="POST">
-                                <?php
-                                $id = $_GET['id'];
-                                $sql = "SELECT * from category where id=$id ";
-                                $query = $dbh->prepare($sql);
-                                $query->execute();
-                                $userArr = $query->fetchAll(PDO::FETCH_OBJ);
-                                if ($query->rowCount() > 0) {
-                                ?>
-
-                    <div class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Category Name</label>
-                        <input type="hidden" id="id" name="id" value="<?php echo htmlentities($userArr[0]->id); ?>" />
-                        <input type="hidden" id="OldImage" name="OldImage" value="<?php echo ($userArr[0]->image); ?>" />
-                        <input type="text" class="form-control" id="name" name="name" placeholder="name" value="<?php echo htmlentities($userArr[0]->name); ?>">
-                    </div>
-                    
-                    <button type="submit" name="fileBTN" id="fileBTN" class="btn btn-primary">Save</button><?php }
-                                                                                                            ?>
+                        <div class="mb-3">
+                          <label class="form-label" for="basic-default-fullname">Catrgory Name</label>
+                          <input type="text" class="form-control" id="catname" name="catname" placeholder="Category Name" required>
+                        </div>
+                        <!-- <div class="mb-3">
+                        <label for="formFile" class="form-label">Image (size : 1920 X 1440px)</label>
+                        <input class="form-control" type="file" name="image" id="image" name="image" required>
+                      </div> -->
+                <button type="submit" name="catBTN" id="catBTN" class="btn btn-primary">Save</button>
                     </form>
-                    <script>
-                         CKEDITOR.replace('content');
-                      </script>
+                   
                     </div>
                   </div>
                 </div>

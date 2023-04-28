@@ -8,30 +8,30 @@ error_reporting(E_ALL);
 
 include('../../includes/config.php');
 if (strlen($_SESSION['alogin']) == 0) {
-  echo '<script>window.location = "../login.php";</script>';
+    echo '<script>window.location = "../login.php";</script>';
 } else {
-  if (isset($_POST['fileBTN'])) {
+    if (isset($_POST['fileBTN'])) {
 
-    $id = $_POST['id'];
-    // $image = $_POST['OldImage'];
+        $id = $_POST['id'];
+        // $image = $_POST['OldImage'];
 
-    $category = $_POST['name'];
-    $slug = strtolower(preg_replace('/[^a-zA-Z0-9\-]/', '', preg_replace('/\s+/', '-', $category)));
+        $category = $_POST['name'];
+        $slug = strtolower(preg_replace('/[^a-zA-Z0-9\-]/', '', preg_replace('/\s+/', '-', $category)));
 
-    $sql = "UPDATE category SET name='$category',slug='$slug' where id='$id'";
-    // print_r($sql);
-    // exit();
+        $sql = "UPDATE bookcategory SET name='$category',slug='$slug' where id='$id'";
+        // print_r($sql);
+        // exit();
 
-    $query = $dbh->prepare($sql);
-    $result = $query->execute();
-    if ($query->rowCount() > 0) {
-      echo '<script>alert("Success")</script>';
-      echo '<script>window.location = "category.php";</script>';
-    } else {
-      echo '<script>alert("something went wrong please try again")</script>';
-      echo '<script>window.location = "category.php";</script>';
+        $query = $dbh->prepare($sql);
+        $result = $query->execute();
+        if ($query->rowCount() > 0) {
+            echo '<script>alert("Success")</script>';
+            echo '<script>window.location = "books-category.php";</script>';
+        } else {
+            echo '<script>alert("something went wrong please try again")</script>';
+            echo '<script>window.location = "books-category.php";</script>';
+        }
     }
-  }
 
 ?>
 
@@ -55,7 +55,7 @@ if (strlen($_SESSION['alogin']) == 0) {
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Edit Category | Mudra Publications</title>
+    <title>Edit Book Category | Mudra Publications</title>
 
     <meta name="description" content="" />
 
@@ -115,7 +115,7 @@ if (strlen($_SESSION['alogin']) == 0) {
           <!-- Content wrapper -->
           <div class="container-xxl flex-grow-1 container-p-y">
                       <h4 class="fw-bold py-3 mb-4">
-                <span class="text-muted fw-light">Admin / </span> Edit Category</h4>
+                <span class="text-muted fw-light">Admin / </span> Edit Book Category</h4>
               
               <!-- Basic Layout -->
               <div class="row">
@@ -129,7 +129,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                     <form class="forms-sample" enctype="multipart/form-data" method="POST">
                                 <?php
                                 $id = $_GET['id'];
-                                $sql = "SELECT * from category where id=$id ";
+                                $sql = "SELECT * from bookcategory where id=$id ";
                                 $query = $dbh->prepare($sql);
                                 $query->execute();
                                 $userArr = $query->fetchAll(PDO::FETCH_OBJ);

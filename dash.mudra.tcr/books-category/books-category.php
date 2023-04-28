@@ -26,7 +26,7 @@ if (strlen($_SESSION['alogin']) == 0) {
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Category | Mudra Publications</title>
+    <title>Books Category | Mudra Publications</title>
 
     <meta name="description" content="" />
 
@@ -107,9 +107,9 @@ if (strlen($_SESSION['alogin']) == 0) {
 
           <!-- Content wrapper -->
           <div class="container-xxl flex-grow-1 container-p-y">
-          <a href="new-category.php"  class="float-end btn btn-primary">New</a>
+          <a href="new-book-category.php"  class="float-end btn btn-primary">New</a>
               <h4 class="fw-bold py-3 mb-4">
-                <span class="text-muted fw-light">Admin / </span>Category</h4>
+                <span class="text-muted fw-light">Admin / </span>Books Category</h4>
               
               <!-- Basic Layout -->
               <div class="card">
@@ -127,7 +127,7 @@ if (strlen($_SESSION['alogin']) == 0) {
 
                     <?php
                     $cnt = 1;
-                    $sql = "SELECT * from category ";
+                    $sql = "SELECT * from bookcategory ";
                     $query = $dbh->prepare($sql);
                     $query->execute();
                     $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -164,7 +164,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                             <?php }
                             ?>
                             <td>
-                         <a  onclick="location.href = 'edit-category.php?id=<?php echo   $result->id ?>';" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                         <a  onclick="location.href = 'edit-book-category.php?id=<?php echo   $result->id ?>';" class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Edit</a>
                         </td>
                       </tr>
                         <?php }
