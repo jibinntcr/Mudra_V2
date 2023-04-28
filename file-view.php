@@ -1,3 +1,5 @@
+<?php include('includes/config.php'); ?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -43,12 +45,23 @@
 
         <!-- Hero Area Start-->
         <div class="slider-area ">
-            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center"
+                data-background="assets/img/hero/about.jpg">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>File Name</h2>
+                                <?php
+                                $id = $_GET['id'];
+                                $sql = "SELECT * FROM files where id=$id ";
+                                $query = $dbh->prepare($sql);
+                                $query->execute();
+                                $userArr = $query->fetchAll(PDO::FETCH_OBJ);
+                                if ($query->rowCount() > 0) {
+
+                                ?>
+                                <h2><?php echo ($userArr[0]->name); ?></h2>
+
                             </div>
                         </div>
                     </div>
@@ -70,10 +83,21 @@
                                 </div>
                                 <div class="job-tittle">
                                     <a href="#">
-                                        <h4>File Name</h4>
+                                        <h4><?php echo ($userArr[0]->name); ?></h4>
                                     </a>
                                     <ul>
-                                        <li>File Category</li>
+                                        <?php
+                                        $categoryid = $userArr[0]->category;
+                                        $sql = "SELECT * FROM category where id=$categoryid ";
+                                        $query = $dbh->prepare($sql);
+                                        $query->execute();
+                                        $category = $query->fetchAll(PDO::FETCH_OBJ);
+                                        if ($query->rowCount() > 0) {
+
+                                        ?>
+                                        <li><?php echo ($category[0]->name) ?></li>
+                                        <?php }
+                                        ?>
                                         <!-- <li>File Number</li>
                                         <li><i class="fa fa-calendar"></i>31/10/2023</li> -->
                                     </ul>
@@ -88,10 +112,7 @@
                                 <div class="small-section-tittle">
                                     <h4>Description</h4>
                                 </div>
-                                <p>It is a long established fact that a reader will beff distracted by vbthe creadable
-                                    content of a page when looking at its layout. The pointf of using Lorem Ipsum is
-                                    that it has ahf mcore or-lgess normal distribution of letters, as opposed to using,
-                                    Content here content here making it look like readable.</p>
+                                <p><?php echo ($userArr[0]->content); ?></p>
                             </div>
                         </div>
 
@@ -104,17 +125,20 @@
                                 <h4>File Details</h4>
                             </div>
                             <ul>
-                                <li>File Number : <span>12 Aug 2019</span></li>
-                                <li>Category : <span>New York</span></li>
-                                <li>Published Date : <span>02</span></li>
+                                <li>File Number : <span><?php echo ($userArr[0]->filenumber); ?></span></li>
+                                <li>Category : <span><?php echo ($category[0]->name) ?></span></li>
+                                <li>Published Date : <span><?php echo ($userArr[0]->date); ?></span></li>
                                 <!-- <li>Job nature : <span>Full time</span></li>
                                 <li>Salary : <span>$7,800 yearly</span></li>
                                 <li>Application date : <span>12 Sep 2020</span></li> -->
                             </ul>
                             <div class="apply-btn2">
-                                <a href="#" class="btn">Download</a>
+                                <a target="_blank" href="uploads/<?php echo ($userArr[0]->image); ?>"
+                                    class="btn">Download</a>
                             </div>
                         </div>
+                        <?php }
+                    ?>
 
                     </div>
                 </div>

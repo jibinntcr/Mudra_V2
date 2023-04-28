@@ -17,15 +17,17 @@
                                 <nav class="d-none d-lg-block">
                                     <ul id="navigation">
                                         <li><a href="index.html">About</a></li>
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="#">Page</a>
+                                        <li><a href="files-category.php">Files</a></li>
+                                        <li><a href="books.php">Books</a></li>
+                                        <li><a href="about.html">News</a></li>
+                                        <!-- <li><a href="#">Page</a>
                                             <ul class="submenu">
                                                 <li><a href="blog.html">Blog</a></li>
                                                 <li><a href="single-blog.html">Blog Details</a></li>
                                                 <li><a href="elements.html">Elements</a></li>
                                                 <li><a href="job_details.html">job Details</a></li>
                                             </ul>
-                                        </li>
+                                        </li> -->
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>

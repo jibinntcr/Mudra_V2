@@ -1,9 +1,4 @@
-<?php include('includes/config.php');
-// $id = $_GET['id'];
-// // print_r($id);
-// // exit(); 
-// 
-?>
+<?php include('includes/config.php'); ?>
 
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -11,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Files List | Mudra Publications</title>
+    <title>Files | Mudra Publications</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link rel="manifest" href="site.webmanifest"> -->
@@ -56,18 +51,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <?php
-                                $id = $_GET['id'];
-                                $sql = "SELECT * FROM category where id=$id ";
-                                $query = $dbh->prepare($sql);
-                                $query->execute();
-                                $category = $query->fetchAll(PDO::FETCH_OBJ);
-                                if ($query->rowCount() > 0) {
-
-                                ?>
-                                <h2><?php echo ($category[0]->name) ?></h2>
-                                <?php }
-                                ?>
+                                <h2>Files Category</h2>
                             </div>
                         </div>
                     </div>
@@ -79,41 +63,39 @@
         <!-- job post company Start -->
         <div class="job-post-company pt-120 pb-120">
             <div class="container">
-                <!-- <div class="row justify-content-between"> -->
-                <!-- table start  -->
-                <!-- <div class="section-top-border"> -->
-                <!-- <h3 class="mb-30">Table</h3> -->
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th scope="col">File Number</th>
-                            <th scope="col">File Name</th>
-                            <th scope="col">Date</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Category</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $cnt = 1;
-                        $id = $_GET['id'];
-                        $sql = "SELECT * from files WHERE category=$id";
+                        $sql = "SELECT * from category ";
                         $query = $dbh->prepare($sql);
                         $query->execute();
                         $results = $query->fetchAll(PDO::FETCH_OBJ);
 
                         if ($query->rowCount() > 0) {
                             foreach ($results as $result) {
-                                $name =  substr($result->name, 0, 65);
                         ?>
                         <tr>
-                            <th scope="row"><?php echo $result->filenumber ?></th>
-                            <td><?php echo $name ?></td>
-                            <td><?php echo $result->date ?></td>
-                            <td><a onclick="location.href='file-view.php?id=<?php echo $result->id ?>&file-name=<?php echo $result->slug; ?>'"
-                                    class="genric-btn danger">View</a></td>
+                            <th scope="row"><?php echo $cnt ?></th>
+                            <td><?php echo $result->name ?></td>
+                            <td>
+                                <a onclick="location.href='files.php?id=<?php echo $result->id ?>&category=<?php echo $result->slug; ?>'"
+                                    class=" genric-btn danger">View</a>
+                            </td>
                         </tr>
-                        <?php }
-                        } ?>
+                        <?php $cnt = $cnt + 1;
+                            }
+                        }
+
+                        ?>
+
 
                     </tbody>
                 </table>

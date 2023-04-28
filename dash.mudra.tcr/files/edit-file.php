@@ -86,8 +86,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 
 
-  <!DOCTYPE html>
-  <!-- beautify ignore:start -->
+<!DOCTYPE html>
+<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style layout-menu-fixed"
@@ -206,10 +206,20 @@ if (strlen($_SESSION['alogin']) == 0) {
                     <div class="input-group">
                             <label class="input-group-text" for="inputGroupSelect01">Options</label>
                             <select class="form-select" id="category" name="category">
-                            <option selected="true" value="<?php echo ($userArr[0]->category); ?>"><?php echo ($userArr[0]->category); ?></option>
                             <?php
+                                  $categoryid = $userArr[0]->category;
+                                  $sql = "SELECT * FROM category where id=$categoryid ";
+                                  $query = $dbh->prepare($sql);
+                                  $query->execute();
+                                  $category = $query->fetchAll(PDO::FETCH_OBJ);
+                                  if ($query->rowCount() > 0) {
+
+                            ?>
+                            <option selected="true" value="<?php echo ($userArr[0]->category); ?>"><?php echo ($category[0]->name); ?></option>
+                            <?php }
+
                                   $cnt = 1;
-                                  $sql = "SELECT name from category ";
+                                  $sql = "SELECT * from category ";
                                   $query = $dbh->prepare($sql);
                                   $query->execute();
                                   $results = $query->fetchAll(PDO::FETCH_OBJ);
@@ -218,7 +228,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                                     foreach ($results as $catresult) {
                             ?>
                             <!-- <option selected="true" disabled="disabled">Choose..</option> -->
-                              <option value="<?php echo $catresult->name ?>"><?php echo $catresult->name ?></option>
+                              <option value="<?php echo $catresult->id ?>"><?php echo $catresult->name ?></option>
                             <?php }
                                   } ?>
                             </select>

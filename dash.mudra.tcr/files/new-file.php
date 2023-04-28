@@ -45,8 +45,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 
 
-  <!DOCTYPE html>
-  <!-- beautify ignore:start -->
+<!DOCTYPE html>
+<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style layout-menu-fixed"
@@ -165,7 +165,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                               foreach ($results as $result) {
                             ?>
                             <!-- <option selected="true" disabled="disabled">Choose..</option> -->
-                              <option value="<?php echo $result->name ?>"><?php echo $result->name ?></option>
+                              <option value="<?php echo $result->id ?>"><?php echo $result->name ?></option>
                             <?php }
                             } ?>
                             </select>

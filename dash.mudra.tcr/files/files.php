@@ -9,8 +9,8 @@ if (strlen($_SESSION['alogin']) == 0) {
 
 
 
-  <!DOCTYPE html>
-  <!-- beautify ignore:start -->
+<!DOCTYPE html>
+<!-- beautify ignore:start -->
 <html
   lang="en"
   class="light-style layout-menu-fixed"
@@ -119,7 +119,7 @@ if (strlen($_SESSION['alogin']) == 0) {
                     <thead>
                       <tr>
                         <th>File Name</th>
-                        <th>Category</th>
+                        <!-- <th>Category</th> -->
                         <th>File Number</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -145,9 +145,9 @@ if (strlen($_SESSION['alogin']) == 0) {
                         <td>
                             <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong> <?php echo  $heading ?></strong>
                         </td>
-                        <td>
+                        <!-- <td>
                             <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo  $result->category ?></strong>
-                        </td>
+                        </td> -->
                         <td>
                             <i class="fab fa-angular fa-lg text-danger me-3"></i> <strong><?php echo  $result->filenumber ?></strong>
                         </td>
